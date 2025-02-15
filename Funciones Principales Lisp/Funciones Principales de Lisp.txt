@@ -1,0 +1,117 @@
+## 1. Funciones Primarias en CLISP  
+Las **funciones primarias** en CLISP son aquellas que vienen integradas en el lenguaje. Se pueden agrupar en diferentes categorías:
+
+### a) Funciones Aritméticas  
+Estas funciones permiten realizar operaciones matemáticas básicas:
+
+- `(+ x y ...)` → Suma una cantidad variable de números. Se puede utilizar con cualquier cantidad de argumentos, devolviendo la suma total.
+- `(- x y ...)` → Resta los valores dados, tomando el primero como referencia.
+- `(* x y ...)` → Multiplica todos los valores dados y devuelve el resultado.
+- `(/ x y ...)` → Divide el primer número entre el segundo, y si hay más valores, los divide en secuencia.
+
+**Ejemplo:**  
+```lisp
+(+ 2 3 5)  ;; Devuelve 10
+(- 10 3 2) ;; Devuelve 5
+(* 2 4 3)  ;; Devuelve 24
+(/ 20 4)   ;; Devuelve 5
+```
+
+### b) Funciones de Comparación  
+Se utilizan para evaluar condiciones lógicas y devolver valores booleanos (`T` o `NIL`).
+
+- `(= x y)` → Verifica si dos valores son iguales.
+- `(< x y)` → Comprueba si el primer valor es menor que el segundo.
+- `(> x y)` → Comprueba si el primer valor es mayor que el segundo.
+- `(<= x y)` → Evalúa si el primer valor es menor o igual que el segundo.
+- `(>= x y)` → Evalúa si el primer valor es mayor o igual que el segundo.
+
+**Ejemplo:**  
+```lisp
+(> 10 5) ;; Devuelve T
+(= 4 4)  ;; Devuelve T
+(< 3 7)  ;; Devuelve T
+```
+
+### c) Funciones de Manipulación de Listas  
+En Lisp, las listas son estructuras fundamentales. Algunas funciones clave incluyen:
+
+- `(car lista)` → Retorna el primer elemento de la lista.
+- `(cdr lista)` → Retorna la lista sin el primer elemento, útil para recorrer listas recursivamente.
+- `(cons elemento lista)` → Agrega un nuevo elemento al inicio de la lista.
+- `(list elemento1 elemento2 ...)` → Crea una lista con los elementos proporcionados.
+
+**Ejemplo:**  
+```lisp
+(setq mi-lista '(a b c d))
+(car mi-lista)   ;; Devuelve A
+(cdr mi-lista)   ;; Devuelve (B C D)
+(cons 'x mi-lista) ;; Devuelve (X A B C D)
+(list 1 2 3 4)   ;; Devuelve (1 2 3 4)
+```
+
+### d) Funciones de Control de Flujo  
+Son funciones que permiten definir estructuras de control, como condicionales y bucles:
+
+- `(if condicion expresion-verdadera expresion-falsa)` → Evalúa una condición y ejecuta la expresión correspondiente.
+- `(cond (condición1 expresión1) (condición2 expresión2) ...)` → Evalúa múltiples condiciones y ejecuta la primera que sea `T`.
+- `(loop ...)` → Se usa para iteraciones avanzadas.
+- `(dolist (var lista) cuerpo)` → Itera sobre cada elemento de la lista ejecutando el código dentro del cuerpo.
+
+**Ejemplo:**  
+```lisp
+(if (> 10 5) 'mayor 'menor)  ;; Devuelve MAYOR
+
+(setq x 3)
+(cond
+  ((= x 1) "Uno")
+  ((= x 2) "Dos")
+  (T "Otro número")) ;; Devuelve "Otro número"
+```
+
+---
+
+## 2. Funciones Propias en CLISP  
+Las funciones propias en CLISP son aquellas que define el usuario. Se crean con `defun` y pueden incluir parámetros.
+
+### a) Definiendo una Función  
+Una función en CLISP se define con `defun`, donde se especifica el nombre de la función, los parámetros y el cuerpo que define su comportamiento.
+```lisp
+(defun nombre (parametros)
+  "Descripción opcional"
+  cuerpo-de-la-función)
+```
+
+**Ejemplo:** Función que suma dos números:
+```lisp
+(defun suma (a b)
+  (+ a b))
+```
+Prueba de la función:
+```lisp
+(suma 3 5)  ;; Devuelve 8
+```
+
+### b) Función Recursiva en CLISP  
+Las funciones pueden llamarse a sí mismas para realizar cálculos recursivos. Esto es útil para problemas como el cálculo del factorial de un número.
+
+**Ejemplo:** Factorial de un número:
+```lisp
+(defun factorial (n)
+  (if (<= n 1)
+      1
+      (* n (factorial (- n 1)))))
+```
+Prueba de la función:
+```lisp
+(factorial 5) ;; Devuelve 120
+```
+
+### c) Función con `lambda`  
+CLISP permite definir funciones anónimas con `lambda`, que pueden ejecutarse sin necesidad de asignarles un nombre.
+
+**Ejemplo:**  
+```lisp
+((lambda (x) (* x x)) 5) ;; Devuelve 25
+```
+
