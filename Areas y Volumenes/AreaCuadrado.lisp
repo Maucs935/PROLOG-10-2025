@@ -1,4 +1,4 @@
-# Área de un Cuadrado en CLISP
+# Área de un Cuadrado
 
 ## Código
 ```lisp
