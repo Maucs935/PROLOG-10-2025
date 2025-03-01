@@ -109,21 +109,6 @@ Implementa una función que concatene dos listas.
       (cons (car lista1) (concatenar-listas (cdr lista1) lista2))))
 ```
 
-## Función Recursiva de División con Restas
-
-```lisp
-(defun dividir (a b)
-  (if (< a b) 
-      (values 0 a)
-      (multiple-value-bind (cociente residuo) 
-          (dividir (- a b) b)  
-        (values (+ 1 cociente) residuo))))  
-
-(dividir 17 5)
-```
-
----
-
 **Autor:** Contreras Garcia Mauricio\
 **Matrícula:** 21120189
 
